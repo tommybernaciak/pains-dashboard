@@ -1,6 +1,6 @@
 export {};
 
-interface Wallet {
+export interface Wallet {
   getBalance: () => Promise<string>;
 }
 
