@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useWalletContext } from "../providers/WalletProvider";
 import { NFT } from "@/types/ntf";
+import { Button } from "@/components/ui/button";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -40,38 +41,41 @@ function Dashboard() {
 
   return (
     <div>
-      <main className="flex flex-col">Pains</main>
-      <p>Connected: {connectedWalletName}</p>
-      <p>Balance: {balance || "-"}</p>
-      <p>NFTs:</p>
-      <div>
-        {nfts && nfts.length > 0 ? (
-          <ul>
-            {nfts.map((nft, index) => (
-              <li key={index}>
-                <strong>Policy ID:</strong> {nft.policyId}
-                <br />
-                <strong>Asset:</strong> {nft.assetName}
-                <br />
-                <strong>Asset Name:</strong> {nft.metadata?.name} (
-                {nft.metadata?.website})
-                <br />
-                {nft.imageUrl ? (
-                  <img
-                    src={nft.imageUrl}
-                    alt={nft.metadata?.name}
-                    style={{ maxWidth: "200px", maxHeight: "200px" }}
-                  />
-                ) : (
-                  <p>No image available</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No NFTs found.</p>
-        )}
-      </div>
+      <main className="flex flex-col">
+        <h1>Pains</h1>
+        <p>Connected: {connectedWalletName}</p>
+        <p>Balance: {balance || "-"}</p>
+        <p>NFTs:</p>
+        <div>
+          {nfts && nfts.length > 0 ? (
+            <ul>
+              {nfts.map((nft, index) => (
+                <li key={index}>
+                  <strong>Policy ID:</strong> {nft.policyId}
+                  <br />
+                  <strong>Asset:</strong> {nft.assetName}
+                  <br />
+                  <strong>Asset Name:</strong> {nft.metadata?.name} (
+                  {nft.metadata?.website})
+                  <br />
+                  {nft.imageUrl ? (
+                    <img
+                      src={nft.imageUrl}
+                      alt={nft.metadata?.name}
+                      style={{ maxWidth: "200px", maxHeight: "200px" }}
+                    />
+                  ) : (
+                    <p>No image available</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No NFTs found.</p>
+          )}
+        </div>
+      </main>
+      <Button onClick={() => navigate("/claim")}>Claim</Button>
     </div>
   );
 }

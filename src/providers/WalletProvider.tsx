@@ -32,18 +32,12 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setAvailableWallets(walletHelper.checkForWallets());
   }, [walletHelper]);
 
-  useEffect(() => {
-    if (connectedWallet) {
-      console.log("Connected wallet:", connectedWallet);
-      navigate("/");
-    }
-  }, [connectedWallet, navigate]);
-
   const connectWallet = async (wallet: string) => {
     const walletApi = await walletHelper.connectWallet(wallet);
     if (walletApi) {
       setConnectedWalletName(wallet);
       setConnectedWallet(walletApi);
+      navigate("/");
     }
   };
 
