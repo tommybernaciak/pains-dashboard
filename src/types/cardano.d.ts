@@ -2,6 +2,7 @@ export {};
 
 export interface Wallet {
   getBalance: () => Promise<string>;
+  getUsedAddresses: () => Promise<string[]>;
 }
 
 interface Cardano {

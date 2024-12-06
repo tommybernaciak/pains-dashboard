@@ -1,19 +1,19 @@
 "use client";
 
 import { WalletHelper } from "@/lib/WalletHelper";
-import { Wallet } from "@/types/cardano";
+import { WalletAddressResponse } from "@/types/ntf";
 import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { createGenericContext } from "./useGenericContext";
-import { NFT } from "@/types/ntf";
 
 interface IWalletContext {
   supportedWallets: string[];
   connectedWalletName: string | null;
+  connectedWallet: WalletAddressResponse | null;
   connectWallet: (wallet: string) => void;
   isAvailable: (wallet: string) => boolean;
-  getWalletBalance: () => Promise<string | null>;
-  getWalletNFTs: () => Promise<NFT[] | null>;
+  // getWalletBalance: () => Promise<string | null>;
+  // getWalletNFTs: () => Promise<NFT[] | null>;
 }
 
 const [useWalletContext, WalletContextProvider] =
@@ -25,7 +25,9 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [connectedWalletName, setConnectedWalletName] = useState<string | null>(
     null
   );
-  const [connectedWallet, setConnectedWallet] = useState<Wallet | null>(null);
+  const [connectedWallet, setConnectedWallet] =
+    useState<WalletAddressResponse | null>(null);
+
   const walletHelper = useMemo(() => new WalletHelper(), []);
 
   useEffect(() => {
@@ -33,41 +35,40 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, [walletHelper]);
 
   const connectWallet = async (wallet: string) => {
-    const walletApi = await walletHelper.connectWallet(wallet);
-    if (walletApi) {
+    const walletInfo = await walletHelper.connectWallet(wallet);
+    if (walletInfo) {
       setConnectedWalletName(wallet);
-      setConnectedWallet(walletApi);
+      setConnectedWallet(walletInfo);
       navigate("/");
     }
   };
 
   const isAvailable = (wallet: string) => availableWallets.includes(wallet);
 
-  const getWalletBalance = async () => {
-    if (!connectedWallet) {
-      return null;
-    }
-    return walletHelper.getWalletBalance(connectedWallet);
-  };
+  // const getWalletBalance = async () => {
+  //   if (!connectedWallet) {
+  //     return null;
+  //   }
+  //   return walletHelper.getWalletBalance(connectedWallet);
+  // };
 
-  const getWalletNFTs = async (): Promise<
-    { policyId: string; assetName: string }[] | null
-  > => {
-    if (!connectedWallet) {
-      return null;
-    }
-    return walletHelper.getWalletNFTs(connectedWallet);
-  };
+  // const getWalletNFTs = async (): Promise<NFT[] | null> => {
+  //   if (!connectedWallet) {
+  //     return null;
+  //   }
+  //   return walletHelper.getWalletNFTs(connectedWallet);
+  // };
 
   return (
     <WalletContextProvider
       value={{
         supportedWallets: walletHelper.SUPPORTED_WALLETS,
-        connectedWalletName,
-        connectWallet,
         isAvailable,
-        getWalletBalance,
-        getWalletNFTs,
+        connectedWalletName,
+        connectedWallet,
+        connectWallet,
+        // getWalletBalance,
+        // getWalletNFTs,
       }}
     >
       {children}

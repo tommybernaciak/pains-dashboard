@@ -8,24 +8,27 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useWalletContext } from "@/providers/WalletProvider";
+import Logo from "../assets/pains-logo-lg.png";
 
 function Connect() {
   const { supportedWallets, connectWallet, isAvailable } = useWalletContext();
+
   return (
-    <div className="bg-[#F6F5FF] items-center justify-items-center min-h-screen p-20">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Card className="bg-white">
+    <div className="items-center justify-items-center p-20">
+      <div className="flex flex-col items-center">
+        <img src={Logo} alt="logo" className="h-[65px] mb-28" />
+        <Card className="bg-white w-[420px] px-10">
           <CardHeader>
-            <CardTitle className="font-[family-name:var(--font-monument)] uppercase text-2xl font-bold">
+            <CardTitle className="text-2xl font-bold uppercase py-6 text-center">
               Connect wallet
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 grid-rows-4 gap-4">
+          <CardContent>
             {supportedWallets.map((wallet) => (
               <Button
                 key={wallet}
                 className={cn(
-                  "bg-[#9C3390] text-white flex flex-col justify-center items-center px-4 py-5 rounded-md",
+                  "bg-[#9C3390] text-white flex flex-col justify-center items-center px-4 py-5 rounded-md w-full",
                   isAvailable(wallet)
                     ? "cursor-pointer hover:bg-[#CC3366] hover:text-white"
                     : "cursor-not-allowed"
@@ -38,15 +41,11 @@ function Connect() {
                 <p>{isAvailable(wallet) ? "" : "(Not available)"}</p>
               </Button>
             ))}
+
+            <div className="text-accent">Go back to main page</div>
           </CardContent>
-          <CardFooter>
-            <p>Card Footer</p>
-          </CardFooter>
         </Card>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <p>Pains footer</p>
-      </footer>
+      </div>
     </div>
   );
 }

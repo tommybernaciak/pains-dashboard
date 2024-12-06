@@ -5,3 +5,15 @@ export type NFT = {
   metadata: NFTMetadata;
   imageUrl?: string | null;
 };
+
+export interface WalletAddressResponse {
+  address: string;
+  adaAmount: number;
+  nfts: {
+    metadata: any;
+    imageUrl: string | null;
+    policyId: string;
+    assetName: string;
+    unit: string;
+  }[];
+}
