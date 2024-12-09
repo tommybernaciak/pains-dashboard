@@ -1,3 +1,4 @@
+import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
@@ -8,16 +9,24 @@ import {
 
 function Upgrade() {
   return (
-    <Card className="bg-white">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-primary">
+    <Card className="bg-white py-8">
+      <CardHeader className="py-0 pb-3">
+        <CardTitle className="text-2xl font-semibold text-primary font-clash">
           Upgrade!
         </CardTitle>
       </CardHeader>
-      <CardContent className=" text-primary">
+      <CardContent className="font-inter text-primary font-medium">
         You want a extend coverage? Buy more of our NFTs!
       </CardContent>
-      <CardFooter className="text-accent">Buy NFT’s</CardFooter>
+      <CardFooter className="flex items-center justify-end pb-0">
+        <Button
+          className="text-accent font-semibold font-clash text-xl"
+          variant={"link"}
+          onClick={() => {}}
+        >
+          Buy NFT’s
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

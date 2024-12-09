@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        clash: ['"ClashDisplay-Variable"', "sans-serif"], // Default to the variable font
+        clash: ['"ClashDisplay-Variable"', "sans-serif"],
+        inter: ['"Inter-Variable"', "sans-serif"],
       },
       fontWeight: {
         extralight: 200,
