@@ -5,9 +5,10 @@ import { WalletAddressResponse } from "@/types/ntf";
 import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { createGenericContext } from "./useGenericContext";
+import { SupportedWallets } from "@/types/wallets";
 
 interface IWalletContext {
-  supportedWallets: string[];
+  supportedWallets: SupportedWallets;
   connectedWalletName: string | null;
   connectedWallet: WalletAddressResponse | null;
   connectWallet: (wallet: string) => void;

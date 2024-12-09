@@ -17,32 +17,35 @@ function Connect() {
     <div className="items-center justify-items-center p-20">
       <div className="flex flex-col items-center">
         <img src={Logo} alt="logo" className="h-[65px] mb-28" />
-        <Card className="bg-white w-[420px] px-10">
+        <Card className="bg-white w-[420px] px-6">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold uppercase py-6 text-center">
+            <CardTitle className="text-2xl font-semibold uppercase py-4 text-center">
               Connect wallet
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            {supportedWallets.map((wallet) => (
+          <CardContent className="flex flex-col gap-3 items-center">
+            {Object.entries(supportedWallets).map(([key, wallet]) => (
               <Button
-                key={wallet}
+                key={key}
+                style={{ backgroundColor: wallet.color }}
                 className={cn(
-                  "bg-[#9C3390] text-white flex flex-col justify-center items-center px-4 py-5 rounded-md w-full",
-                  isAvailable(wallet)
+                  ` text-white flex flex-col justify-center items-center px-4 py-5 rounded-xl w-full h-12`,
+                  isAvailable(key)
                     ? "cursor-pointer hover:bg-[#CC3366] hover:text-white"
                     : "cursor-not-allowed"
                 )}
                 variant="outline"
-                disabled={!isAvailable(wallet)}
-                onClick={() => connectWallet(wallet)}
+                disabled={!isAvailable(key)}
+                onClick={() => connectWallet(key)}
               >
-                <p>{wallet}</p>
-                <p>{isAvailable(wallet) ? "" : "(Not available)"}</p>
+                <p>{wallet.label}</p>
+                <p>{isAvailable(key) ? "" : "(Not available)"}</p>
               </Button>
             ))}
 
-            <div className="text-accent">Go back to main page</div>
+            <Button className="text-accent font-semibold" variant={"link"}>
+              Go back to main page
+            </Button>
           </CardContent>
         </Card>
       </div>
