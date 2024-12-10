@@ -28,7 +28,10 @@ function Claim() {
         Our team of insurtech specialist will review your case.
       </CardContent>
       <CardFooter className="flex items-center justify-end pb-0">
-        <Button className="bg-accent text-white w-full" onClick={goToClaim}>
+        <Button
+          className="bg-accent text-white w-full font-clash font-semibold hover:!bg-accent hover:text-white hover:opacity-80"
+          onClick={goToClaim}
+        >
           Report a Claim
         </Button>
       </CardFooter>

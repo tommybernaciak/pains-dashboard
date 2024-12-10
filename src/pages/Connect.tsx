@@ -27,26 +27,33 @@ function Connect() {
                 key={key}
                 style={{ backgroundColor: wallet.color }}
                 className={cn(
-                  ` text-white flex justify-center items-center align-middle px-4 py-5 rounded-xl w-full h-12 font-bold`,
+                  ` text-white flex justify-center hover:justify-between transition-all ease-in-out delay-150 duration-800 items-center align-middle px-10 py-5 rounded-xl w-full h-12 font-bold group`,
                   isAvailable(key)
-                    ? "cursor-pointer hover:text-secondary"
+                    ? "cursor-pointer hover:text-white"
                     : "cursor-not-allowed"
                 )}
                 variant="outline"
                 disabled={!isAvailable(key)}
                 onClick={() => connectWallet(key)}
               >
+                <div className="flex justify-center items-center align-middle gap-2 transform transition-transform duration-800 translate-x-[20px] group-hover:translate-x-0 ">
+                  <img
+                    src={`/assets/${key}.png`}
+                    alt={`${key}-logo`}
+                    className="w-6 h-6"
+                  />
+                  <p>{wallet.label}</p>
+                </div>
                 <img
-                  src={`/assets/${key}.png`}
-                  alt={`${key}-logo`}
-                  className="w-6 h-6"
+                  src={`/icons/arrow-narrow-right.svg`}
+                  alt="arrow-right"
+                  className="w-4 h-4 transform transition-transform duration-800 translate-x-[-20px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
                 />
-                <p>{wallet.label}</p>
               </Button>
             ))}
 
             <Button
-              className="text-accent font-semibold font-clash "
+              className="text-accent font-semibold font-clash"
               variant={"link"}
               onClick={redirectToPage}
             >

@@ -8,7 +8,7 @@ import { useWalletContext } from "../providers/WalletProvider";
 import EmptyPage from "@/components/custom/empty-page";
 import { Button } from "@/components/ui/button";
 import { BUY_NFTS_URL } from "@/lib/utils";
-import arrow from "/icons/arrow-up-right.svg";
+import arrow from "/icons/arrow-up-right-white.svg";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -32,12 +32,11 @@ function Dashboard() {
     return <EmptyPage text="Error - wallet not connected" />;
   }
 
-  // TODO: fix icon, fix hover color
   if (!connectedWallet.nfts.length) {
     return (
       <EmptyPage text="you don't have any pains yet  ;-( but you can !">
         <Button
-          className="bg-accent text-white font-semibold font-clash text-xl hover:!bg-accent/80"
+          className="bg-accent text-white font-semibold font-clash text-xl hover:!bg-accent hover:text-white hover:opacity-80"
           onClick={redirectToPage}
         >
           Buy NFT’s <img src={arrow} />

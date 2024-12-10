@@ -13,6 +13,7 @@ interface IWalletContext {
   connectedWallet: WalletAddressResponse | null;
   connectWallet: (wallet: string) => void;
   isAvailable: (wallet: string) => boolean;
+  removeWallet: () => void;
 }
 
 const [useWalletContext, WalletContextProvider] =
@@ -44,6 +45,11 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const isAvailable = (wallet: string) => availableWallets.includes(wallet);
 
+  const removeWallet = () => {
+    setConnectedWalletName(null);
+    setConnectedWallet(null);
+  };
+
   return (
     <WalletContextProvider
       value={{
@@ -52,6 +58,7 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
         connectedWalletName,
         connectedWallet,
         connectWallet,
+        removeWallet,
       }}
     >
       {children}
