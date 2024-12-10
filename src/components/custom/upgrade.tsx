@@ -1,3 +1,4 @@
+import { BUY_NFTS_URL } from "@/lib/utils";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -6,8 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import arrow from "/icons/arrow-up-right.svg";
 
 function Upgrade() {
+  const redirectToPage = () => {
+    window.open(BUY_NFTS_URL, "_blank");
+  };
+
   return (
     <Card className="bg-white py-8">
       <CardHeader className="py-0 pb-3">
@@ -22,9 +28,9 @@ function Upgrade() {
         <Button
           className="text-accent font-semibold font-clash text-xl"
           variant={"link"}
-          onClick={() => {}}
+          onClick={redirectToPage}
         >
-          Buy NFT’s
+          Buy NFT’s <img src={arrow} />
         </Button>
       </CardFooter>
     </Card>

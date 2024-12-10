@@ -1,6 +1,7 @@
 import { WalletAddressResponse } from "@/types/ntf";
 import { SupportedWallets } from "@/types/wallets";
 import * as CardanoSerializationLib from "@emurgo/cardano-serialization-lib-asmjs";
+import { API_URL } from "./utils";
 
 export class WalletHelper {
   public SUPPORTED_WALLETS: SupportedWallets = {
@@ -54,7 +55,6 @@ export class WalletHelper {
         console.log("Connected wallet:", wallet);
 
         const addresses = await walletApi.getUsedAddresses();
-        console.log("Addresses:", addresses);
         const decoded = this.decodeAddress(addresses[0]);
         console.log("Decoded Address:", decoded);
         if (!decoded) {
@@ -100,7 +100,7 @@ export class WalletHelper {
   ): Promise<WalletAddressResponse | null> => {
     try {
       const response = await fetch(
-        `http://localhost:3000/decode-wallet?wallet_address=${address}`
+        `${API_URL}/decode-wallet?wallet_address=${address}`
       );
       const data: WalletAddressResponse = await response.json();
       return data;

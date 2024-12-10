@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, PAINS_URL } from "@/lib/utils";
 import { useWalletContext } from "@/providers/WalletProvider";
 import Logo from "../assets/pains-logo-lg.png";
 
@@ -8,7 +8,7 @@ function Connect() {
   const { supportedWallets, connectWallet, isAvailable } = useWalletContext();
 
   const redirectToPage = () => {
-    window.open("https://slowingpains.com/", "_blank");
+    window.open(PAINS_URL, "_blank");
   };
 
   return (
@@ -42,7 +42,6 @@ function Connect() {
                   className="w-6 h-6"
                 />
                 <p>{wallet.label}</p>
-                {/* <p>{isAvailable(key) ? "" : "(Not available)"}</p> */}
               </Button>
             ))}
 

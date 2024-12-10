@@ -13,8 +13,6 @@ interface IWalletContext {
   connectedWallet: WalletAddressResponse | null;
   connectWallet: (wallet: string) => void;
   isAvailable: (wallet: string) => boolean;
-  // getWalletBalance: () => Promise<string | null>;
-  // getWalletNFTs: () => Promise<NFT[] | null>;
 }
 
 const [useWalletContext, WalletContextProvider] =
@@ -46,20 +44,6 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const isAvailable = (wallet: string) => availableWallets.includes(wallet);
 
-  // const getWalletBalance = async () => {
-  //   if (!connectedWallet) {
-  //     return null;
-  //   }
-  //   return walletHelper.getWalletBalance(connectedWallet);
-  // };
-
-  // const getWalletNFTs = async (): Promise<NFT[] | null> => {
-  //   if (!connectedWallet) {
-  //     return null;
-  //   }
-  //   return walletHelper.getWalletNFTs(connectedWallet);
-  // };
-
   return (
     <WalletContextProvider
       value={{
@@ -68,8 +52,6 @@ const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
         connectedWalletName,
         connectedWallet,
         connectWallet,
-        // getWalletBalance,
-        // getWalletNFTs,
       }}
     >
       {children}

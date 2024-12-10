@@ -10,6 +10,7 @@ import {
 
 function Claim() {
   const navigate = useNavigate();
+  const goToClaim = () => navigate("/claim");
 
   return (
     <Card className="bg-secondary-foreground py-8">
@@ -19,7 +20,7 @@ function Claim() {
           alt={`never-gonna-happen`}
           className="h-[130px] w-[130px] absolute -top-[100px] left-7"
         />
-        <CardTitle className="text-[54px] font-semibold text-white font-clash">
+        <CardTitle className="text-[54px] font-semibold text-white font-clash !mt-6">
           Calm down...
         </CardTitle>
       </CardHeader>
@@ -27,10 +28,7 @@ function Claim() {
         Our team of insurtech specialist will review your case.
       </CardContent>
       <CardFooter className="flex items-center justify-end pb-0">
-        <Button
-          className="bg-accent text-white w-full"
-          onClick={() => navigate("/claim")}
-        >
+        <Button className="bg-accent text-white w-full" onClick={goToClaim}>
           Report a Claim
         </Button>
       </CardFooter>
