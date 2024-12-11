@@ -9,6 +9,7 @@ import EmptyPage from "@/components/custom/empty-page";
 import { Button } from "@/components/ui/button";
 import { BUY_NFTS_URL } from "@/lib/utils";
 import arrow from "/icons/arrow-up-right-white.svg";
+import happysun from "/assets/happysun.png";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function Dashboard() {
   return (
     <div className="flex flex-col">
       <Navbar address={connectedWallet.address} />
-      <div className="justify-items-center w-full py-16 px-20">
+      <div className="justify-items-center w-full pt-16 pb-1 px-20">
         <div className="flex nowrap justify-between items-start gap-5 w-full min-w-[960px]">
           <div className="flex flex-col flex-grow gap-6 min-w-[400px]">
             <Claim />
@@ -59,6 +60,11 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      {connectedWallet.nfts.length < 3 && (
+        <div className="w-full flex justify-center pt-8 pb-2">
+          <img src={happysun} className="w-32 aspect-square" />
+        </div>
+      )}
     </div>
   );
 }

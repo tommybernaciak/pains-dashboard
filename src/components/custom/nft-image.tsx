@@ -4,13 +4,23 @@ function NftImage({ nft }: { nft: NFT }) {
   return (
     <>
       {nft.imageUrl ? (
-        <img
-          src={nft.imageUrl}
-          alt={nft.metadata?.name}
-          style={{ maxWidth: "200px", maxHeight: "200px" }}
-        />
+        <div>
+          <img
+            src={nft.imageUrl}
+            alt={nft.metadata.onchain_metadata.name}
+            className="rounded-xl w-full max-w-96 aspect-square"
+          />
+          <p className="font-inter font-bold text-primary pt-3">
+            {nft.metadata?.onchain_metadata?.name || "No name"}
+          </p>
+        </div>
       ) : (
-        <p>No image available</p>
+        <div>
+          <div className="bg-[#d4d5e1] w-full max-w-96 aspect-square rounded-xl"></div>
+          <p className="font-inter font-bold text-primary pt-3">
+            Image not found!
+          </p>
+        </div>
       )}
     </>
   );

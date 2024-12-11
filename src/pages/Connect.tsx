@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn, PAINS_URL } from "@/lib/utils";
 import { useWalletContext } from "@/providers/WalletProvider";
-import Logo from "../assets/pains-logo-lg.png";
+import Logo from "/assets/pains-logo-lg.png";
 
 function Connect() {
   const { supportedWallets, connectWallet, isAvailable } = useWalletContext();

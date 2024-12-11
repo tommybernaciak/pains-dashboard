@@ -56,13 +56,11 @@ export class WalletHelper {
 
         const addresses = await walletApi.getUsedAddresses();
         const decoded = this.decodeAddress(addresses[0]);
-        console.log("Decoded Address:", decoded);
         if (!decoded) {
           return null;
         }
 
         const walletResponse = await this.decodeWallet(decoded);
-        console.log("Wallet data:", walletResponse);
         return walletResponse;
       } catch (error) {
         console.error("Error connecting wallet:", error);

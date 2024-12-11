@@ -70,3 +70,8 @@
     @apply bg-background text-foreground font-inter;
   }
 }
+
+button:disabled img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
